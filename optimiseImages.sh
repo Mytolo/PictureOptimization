@@ -1,11 +1,11 @@
 #!/bin/bash
 
 curDir=$(pwd|rev|cut -d "/" -f1 |rev)
-ConvertDir="../ConvertedImages$curDir"
+ConvertDir="./ConvertedImages$curDir"
 mkdir -p $ConvertDir
 ls $ConvertDir
 
-optimise() {
+optimiseJpg() {
 for i in $(find . -iname "*.jpg" -type f | grep -v Unoptimized)
  do 
    name=$(echo $i|cut -d "/" -f2)
@@ -14,5 +14,15 @@ for i in $(find . -iname "*.jpg" -type f | grep -v Unoptimized)
 done
 }
 
+
+optimisePng() {
+  for i in $(find . -iname "*.png" -type f | grep -v Unoptimized)
+  do 
+    name=$(echo $i|cut -d "/" -f2)
+    echo pngquant $i 128 $ConvertDir/$name 
+  done
+}
+
 #echo "Want to do optimisation?"
-optimise
+optimiseJpg
+optimisePng
