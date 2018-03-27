@@ -14,7 +14,6 @@ for i in $(find . -iname "*.jpg" -type f | grep -v Unoptimized)
 done
 }
 
-
 optimisePng() {
   for i in $(find . -iname "*.png" -type f | grep -v Unoptimized)
   do 
