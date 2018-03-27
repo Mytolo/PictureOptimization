@@ -3,7 +3,8 @@
 curDir=$(pwd|rev|cut -d "/" -f1 |rev)
 ConvertDir="../${curDir}Converted"
 CORES=$(nproc)
-
+# If you want it faster :D
+let CORES=$CORES*2
 
 
 numJpg=$(find -iname "*.jpg" -type f| grep -v Unoptimized | wc -l)
