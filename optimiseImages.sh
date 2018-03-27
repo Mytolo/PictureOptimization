@@ -64,3 +64,7 @@ optimisePng() {
 #echo "Want to do optimisation?"
 optimiseJpg
 optimisePng
+echo "unconverted:"
+du -sh ./
+echo "converted:"
+du -sh $ConvertDir
