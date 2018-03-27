@@ -22,14 +22,14 @@ for i in $(find . -iname "*.jpg" -type f | grep -v Unoptimized)
    do
       load=$(ps aux | grep guetzli | wc -l)
       let load=$load-1
-      printf "\rload to high ($load)"
+      printf "load to high ($load)\r"
       sleep 0.1 
    done
    if [ ! -f $ConvertDir/$name ]
    then
    	#echo guetzli --nomemlimit $i $ConvertDir/$name
-        printf "\r\noptimizing $name in $(dirname $i)"
-        guetzli --nomemlimit $i $ConvertDir/$name&
+        echo "optimizing $name in $(dirname $i)"
+	guetzli --nomemlimit $i $ConvertDir/$name&
    fi
 done
 }
@@ -49,13 +49,13 @@ optimisePng() {
    do
       load=$(ps aux | grep guetzli | wc -l)
       let load=$load-1
-      printf "\rload to high ($load)"
+      printf "load to high ($load)\r"
       sleep 0.1 
    done
    if [ ! -f $ConvertDir/$name ]
    then
     	#echo pngquant --skip-if-larger -o $ConvertDir/$name --strip 256 $i
-        printf "\r\noptimizing $name in $(dirname $i)"
+        echo "optimizing $name in $(dirname $i)"
 	pngquant --skip-if-larger -o $ConvertDir/$name --strip 256 $i
    fi
   done
