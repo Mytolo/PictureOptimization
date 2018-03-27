@@ -10,7 +10,14 @@ for i in $(find . -iname "*.jpg" -type f | grep -v Unoptimized)
  do 
    name=$(echo $i|cut -d "/" -f2-)
    echo guetzli --nomemlimit $i $ConvertDir/$name
-   guetzli --nomemlimit $i $ConvertDir/$name
+   if [ ! -d $(dirname $ConvertDir/$name) ]
+   then
+     mkdir -p $(dirname $ConvertDir/$name)
+   fi
+   if [ ! -f $ConvertDir/$name ]
+   then
+        guetzli --nomemlimit $i $ConvertDir/$name
+   fi
 done
 }
 
